@@ -1,8 +1,17 @@
-# Notification Service Project Board
+# Notification Service
 
 ## Sprint 0
 
 - [ ] Product Requirements Document
 - [ ] High Level Design
 - [ ] Low Level Design
-- [ ] ADR-001 Event Based Notifications
+- [x] ADR-001 Event Based Notifications
+
+---
+
+## Sprint 1
+
+- [ ] FastAPI Setup
+- [ ] PostgreSQL Integration
+- [ ] Notification API
+- [ ] Testing
