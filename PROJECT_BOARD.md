@@ -3,8 +3,8 @@
 ## Sprint 0
 
 - [x] Product Requirements Document
-- [ ] High Level Design
-- [ ] Low Level Design
+- [x] High Level Design
+- [x] API Design
 - [x] ADR-001 Event Based Notifications
 
 ---
