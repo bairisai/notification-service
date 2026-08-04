@@ -7,6 +7,9 @@ class Settings(BaseSettings):
     APP_NAME: str = "Notification Service"
     APP_VERSION: str = "0.1.0"
     LOG_LEVEL: str = "INFO"
+    API_KEY: str = "change-me"
+    API_PREFIX: str = "/api"
+    API_VERSION: str = "v1"
 
     model_config = SettingsConfigDict(
         env_file=".env",
