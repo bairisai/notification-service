@@ -21,9 +21,9 @@ router = APIRouter(
     status_code=status.HTTP_202_ACCEPTED,
     dependencies=[Depends(validate_api_key)],
 )
-def submit_notification(request: NotificationRequest) -> NotificationResponse:
+async def submit_notification(request: NotificationRequest) -> NotificationResponse:
     """Accept a notification request for asynchronous processing."""
-    return NotificationService.submit_notification(request)
+    return await NotificationService.submit_notification(request)
 
 
 @router.get(

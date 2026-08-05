@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
+
+from app.notifications.models import NotificationStatus
 
 
 @dataclass
@@ -9,9 +11,13 @@ class NotificationRecord:
     recipient: dict[str, Any]
     template: str
     data: dict[str, Any]
-    status: str
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
+    status: NotificationStatus
+    created_at: datetime = field(
+        default_factory=lambda: datetime.now(timezone.utc)
+    )
+    updated_at: datetime = field(
+        default_factory=lambda: datetime.now(timezone.utc)
+    )
 
 
 class InMemoryNotificationStore:
@@ -23,6 +29,17 @@ class InMemoryNotificationStore:
 
     def get(self, notification_id: str) -> NotificationRecord | None:
         return self._store.get(notification_id)
+    
+    def update_status(self, notification_id: str, status: NotificationStatus) -> None:
+        record = self.get(notification_id)
+
+        if record is None:
+            raise KeyError(
+                f"Notification {notification_id} not found."
+            )
+
+        record.status = status
+        record.updated_at = datetime.now(timezone.utc)
+        self.save(record)
 
 
-notification_store = InMemoryNotificationStore()
